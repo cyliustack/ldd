@@ -39,6 +39,8 @@
 
 #include "scull.h" /* local definitions */
 
+#include <linux/uaccess.h>
+
 /*
  * Our parameters which can be set at load time.
  */
@@ -415,9 +417,9 @@ ssize_t scull_ioctl(struct file* filp,
 	 * "write" is reversed
 	 */
     if (_IOC_DIR(cmd) & _IOC_READ)
-        err = !access_ok(VERIFY_WRITE, (void __user*)arg, _IOC_SIZE(cmd));
+        err = !access_ok((void __user*)arg, _IOC_SIZE(cmd));
     else if (_IOC_DIR(cmd) & _IOC_WRITE)
-        err = !access_ok(VERIFY_READ, (void __user*)arg, _IOC_SIZE(cmd));
+        err = !access_ok((void __user*)arg, _IOC_SIZE(cmd));
     if (err)
         return -EFAULT;
 

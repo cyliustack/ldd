@@ -32,6 +32,8 @@
 #include <linux/sched.h>
 #include "scull.h"        /* local definitions */
 
+#include <linux/sched/signal.h>
+
 static dev_t scull_a_firstdev;  /* Where our range begins */
 
 /*
