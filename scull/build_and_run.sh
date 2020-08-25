@@ -12,6 +12,6 @@ make
 sudo cp scull.ko /lib/modules/$(uname -r)
 sudo depmod -a
 sudo rmmod scull
-sudo modprobe scull 
-dmesg
- 
+sudo modprobe scull
+dmesg | tail 
+modinfo scull 
